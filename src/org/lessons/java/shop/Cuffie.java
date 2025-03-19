@@ -30,4 +30,12 @@ public class Cuffie extends Prodotto {
     public void setisWireless(boolean isWireless) {
         this.isWireless = isWireless;
     }
+    @Override
+    public String GetCodiceNomeEsteso() {
+        return String.format("%s, il colore è: %s, sono %s.\n", 
+            super.GetCodiceNomeEsteso(), 
+            getColore(),
+            (getisWireless() ? "wireless" : "con cavo")
+        );
+    }
 }

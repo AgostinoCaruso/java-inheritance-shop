@@ -28,4 +28,12 @@ public class Televisori extends Prodotto {
     public void setisSmart(boolean isSmart){
         this.isSmart = isSmart;
     }
+    @Override
+    public String GetCodiceNomeEsteso() {
+        return String.format("%s, le dimensioni sono: %.2f pollici, è smart: %s.\n", 
+            super.GetCodiceNomeEsteso(), 
+            getDimensioni(),
+            (getisSmart() ? "si" : "no")
+        );
+    }
 }

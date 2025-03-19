@@ -32,4 +32,13 @@ public class Smartphone extends Prodotto {
     public void setMemoria(int memoria) {
         this.memoria = memoria;
     }
+
+    @Override
+    public String GetCodiceNomeEsteso() {
+        return String.format("%s, il codice IMEI è: %s, la memoria è: %d.\n", 
+            super.GetCodiceNomeEsteso(), 
+            getCodiceIMEI(), 
+            getMemoria()
+        );
+    }
 }
