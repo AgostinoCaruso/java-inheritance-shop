@@ -13,6 +13,10 @@ public class Main {
         System.out.println(tv.GetCodiceNomeEsteso());
         System.out.printf("Le dimensioni sono: %.2f pollici, è smart? %s.\n\n", tv.getDimensioni(),
         (tv.getisSmart() ? "si" : "no"));
-
+        
+        //Cuffie
+        Cuffie airpod = new Cuffie("airPods", "apple", new BigDecimal(99), new BigDecimal(0.20),"bianco", true);
+        System.out.println(airpod.GetCodiceNomeEsteso());
+        System.out.printf("il colore è: %s, sono %s.\n\n", airpod.getColore(), (airpod.getisWireless() ? "wireless" : "con cavo"));
     }
 }
