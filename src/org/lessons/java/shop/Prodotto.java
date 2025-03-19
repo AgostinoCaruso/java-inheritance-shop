@@ -10,7 +10,7 @@ public class Prodotto {
     // campi
     protected int codice;
     protected String nome;
-    protected String descrizione;
+    protected String marca;
     protected BigDecimal prezzo;
     protected BigDecimal iva;
 
@@ -19,15 +19,15 @@ public class Prodotto {
     public Prodotto() {
         this.codice = r.nextInt(0, 99999);
         this.nome = "non definito";
-        this.descrizione = "nessuna rensione";
+        this.marca = "nessuna rensione";
         this.prezzo = null;
         this.iva = null;
     }
 
-    public Prodotto(String nome, String descrizione, BigDecimal prezzo, BigDecimal iva) {
+    public Prodotto(String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
         this.codice = r.nextInt(0, 99999);
         this.nome = nome;
-        this.descrizione = descrizione;
+        this.marca = marca;
         this.prezzo = prezzo;
         this.iva = iva;
     }
@@ -45,12 +45,12 @@ public class Prodotto {
         this.nome = nome;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public BigDecimal getPrezzo() {
