@@ -16,15 +16,16 @@ public class Prodotto {
 
     // costruttore
     // costruttore overload senza parametri
-    public Prodotto() {
-        this.codice = r.nextInt(0, 99999);
-        this.nome = "non definito";
-        this.marca = "nessuna rensione";
-        this.prezzo = null;
-        this.iva = null;
-    }
+    // public Prodotto() {
+    //     this.codice = r.nextInt(0, 99999);
+    //     this.nome = "non definito";
+    //     this.marca = "nessuna rensione";
+    //     this.prezzo = null;
+    //     this.iva = null;
+    // }
 
     public Prodotto(String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
+        
         this.codice = r.nextInt(0, 99999);
         this.nome = nome;
         this.marca = marca;
