@@ -7,7 +7,7 @@ public class Televisori extends Prodotto {
     private float dimensioni;
     private boolean isSmart;
 
-    public Televisori(String nome, String marca, BigDecimal prezzo, BigDecimal iva, float dimensioni, boolean isSmart) {
+    public Televisori(String nome, String marca, BigDecimal prezzo, Iva iva, float dimensioni, boolean isSmart) {
 
         super(nome, marca, prezzo, iva);
         this.dimensioni = dimensioni > 0 ? dimensioni : 1;

@@ -7,7 +7,7 @@ public class Cuffie extends Prodotto {
     private String colore;
     private boolean isWireless;
 
-    public Cuffie(String nome, String marca, BigDecimal prezzo, BigDecimal iva, String colore, boolean isWireless) {
+    public Cuffie(String nome, String marca, BigDecimal prezzo, Iva iva, String colore, boolean isWireless) {
 
         super(nome, marca, prezzo, iva);
         this.colore = colore == "" ? "non hai selezionato un colore" : colore;

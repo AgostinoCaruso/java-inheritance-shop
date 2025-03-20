@@ -7,7 +7,7 @@ public class Smartphone extends Prodotto {
     private String codiceIMEI;
     private int memoria;
 
-    public Smartphone(String nome, String marca, BigDecimal prezzo, BigDecimal iva, String codiceIMEI, int memoria) {
+    public Smartphone(String nome, String marca, BigDecimal prezzo, Iva iva, String codiceIMEI, int memoria) {
 
         super(nome, marca, prezzo, iva);
         this.codiceIMEI = codiceIMEI == "" || codiceIMEI == null

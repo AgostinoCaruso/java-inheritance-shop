@@ -12,7 +12,7 @@ public class Prodotto {
     protected String nome;
     protected String marca;
     protected BigDecimal prezzo;
-    protected BigDecimal iva;
+    protected Iva ivaAmount;
 
     // costruttore
     // costruttore overload senza parametri
@@ -24,13 +24,13 @@ public class Prodotto {
     //     this.iva = null;
     // }
 
-    public Prodotto(String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
+    public Prodotto(String nome, String marca, BigDecimal prezzo, Iva ivaAmount) {
         
         this.codice = r.nextInt(0, 99999);
         this.nome = nome;
         this.marca = marca;
         this.prezzo = prezzo;
-        this.iva = iva;
+        this.ivaAmount = ivaAmount;
     }
 
     // getter&setter
@@ -62,12 +62,12 @@ public class Prodotto {
         this.prezzo = BigDecimal.valueOf(prezzo);
     }
 
-    public BigDecimal getIva() {
-        return iva;
+    public Iva getIva() {
+        return ivaAmount;
     }
 
-    public void setIva(BigDecimal iva) {
-        this.iva = iva;
+    public void setIva(Iva ivaAmount) {
+        this.ivaAmount = ivaAmount;
     }
 
     // metodi
@@ -76,8 +76,8 @@ public class Prodotto {
     }
 
     public BigDecimal GetPrezzoConIva() {
-        if (prezzo != null && iva != null) {
-            return prezzo.add(prezzo.multiply(iva)).setScale(2, RoundingMode.DOWN);
+        if (prezzo != null && ivaAmount != null) {
+            return prezzo.add(prezzo.multiply(ivaAmount.getIvaAmount())).setScale(2, RoundingMode.DOWN);
         }
         return null;
     }
