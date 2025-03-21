@@ -7,6 +7,21 @@ public class Cuffie extends Prodotto {
     private String colore;
     private boolean isWireless;
 
+    public Cuffie(){
+        super();
+
+        System.out.println("Immetti il colore: ");
+        String scanColore = scan.nextLine();
+        colore = scanColore;
+
+        System.out.println("Le cuffie sono wireless? : ");
+        String scanisWireless = scan.nextLine().trim().toLowerCase();
+        if(scanisWireless.equals("si"))
+            isWireless=true;
+        else
+            isWireless=false;
+    }
+
     public Cuffie(String nome, String marca, BigDecimal prezzo, Iva iva, String colore, boolean isWireless) {
 
         super(nome, marca, prezzo, iva);

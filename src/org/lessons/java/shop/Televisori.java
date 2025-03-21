@@ -7,6 +7,22 @@ public class Televisori extends Prodotto {
     private float dimensioni;
     private boolean isSmart;
 
+    public Televisori(){
+        super();
+
+        System.out.println("Immetti le dimensioni: ");
+        float scanDimensioni = scan.nextFloat();
+        scan.nextLine();
+        dimensioni = scanDimensioni;
+
+        System.out.println("Il tv è smart? : ");
+        String scanisSmart = scan.nextLine().trim().toLowerCase();
+        if(scanisSmart.equals("si"))
+            isSmart=true;
+        else
+            isSmart=false;
+    }
+
     public Televisori(String nome, String marca, BigDecimal prezzo, Iva iva, float dimensioni, boolean isSmart) {
 
         super(nome, marca, prezzo, iva);

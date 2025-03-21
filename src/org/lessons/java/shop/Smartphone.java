@@ -1,11 +1,18 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
-
 public class Smartphone extends Prodotto {
-
     private String codiceIMEI;
     private int memoria;
+
+    public Smartphone(){
+        super();
+        System.out.println("Immetti il codice IMEI: ");
+        this.codiceIMEI = scan.nextLine();
+
+        System.out.println("Immetti quanta memoria ha lo smartphone: ");
+        this.memoria = scan.nextInt();
+    }
 
     public Smartphone(String nome, String marca, BigDecimal prezzo, Iva iva, String codiceIMEI, int memoria) {
 

@@ -3,9 +3,11 @@ package org.lessons.java.shop;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Prodotto {
     Random r = new Random();
+    protected Scanner scan = new Scanner(System.in);
 
     // campi
     protected int codice;
@@ -13,16 +15,28 @@ public class Prodotto {
     protected String marca;
     protected BigDecimal prezzo;
     protected Iva ivaAmount;
-
+    public static boolean tesseraFedelta;
     // costruttore
     // costruttore overload senza parametri
-    // public Prodotto() {
-    //     this.codice = r.nextInt(0, 99999);
-    //     this.nome = "non definito";
-    //     this.marca = "nessuna rensione";
-    //     this.prezzo = null;
-    //     this.iva = null;
-    // }
+    public Prodotto() {
+
+        this.codice = r.nextInt(0, 99999);
+
+        System.out.println("Immetti il nome per il prodotto: ");
+        String nome = scan.nextLine();
+        this.nome = nome;
+
+        System.out.println("Immetti la marca per il prodotto: ");
+        String marca = scan.nextLine();
+        this.marca = marca;
+
+        System.out.println("Immetti il prezzo per il prodotto: ");
+        BigDecimal prezzo = scan.nextBigDecimal();
+        this.prezzo = prezzo;
+        
+        this.ivaAmount = new Iva();
+        scan.nextLine();
+    }
 
     public Prodotto(String nome, String marca, BigDecimal prezzo, Iva ivaAmount) {
         
