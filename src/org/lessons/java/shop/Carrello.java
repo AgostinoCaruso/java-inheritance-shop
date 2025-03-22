@@ -23,68 +23,107 @@ In base alla risposta, calcolare il totale del carrello come somma dei prezzi ba
 public class Carrello {
 
     private Prodotto[] carrelloSpesa;
+    private String scontrino = "";
+    private BigDecimal totaleSpesa = new BigDecimal("0");
     protected Scanner scan = new Scanner(System.in);
     private int numeroProdotti;
+
     public Carrello() {
-        
+
         CreaCarrello();
-        //------------------------
+        // ------------------------
         PopolaCarrelloConProdotti();
-        //--------------------
+        // --------------------
         StampaSchermo();
         scan.close();
     }
 
-    
     private void CreaCarrello() {
         System.out.println("Scrivi il numero di prodotti che vuoi mettere nel carrello: ");
         numeroProdotti = scan.nextInt();
         scan.nextLine();
         carrelloSpesa = new Prodotto[numeroProdotti];
     }
-    
+
     private void PopolaCarrelloConProdotti() {
-        
+
         for (int i = 0; i < numeroProdotti; i++) {
             System.out.println("Cosa vuoi aggiungere tra cuffie, smartphone o tv?");
             String prodottoScritto = scan.nextLine().trim().toLowerCase();
-            
+
             switch (prodottoScritto) {
                 case "cuffie":
-                System.out.println("Hai scelto Cuffie!");
-                carrelloSpesa[i] = new Cuffie();
-                break;
+                    System.out.println("Hai scelto Cuffie!");
+                    carrelloSpesa[i] = new Cuffie();
+                    scontrino += carrelloSpesa[i].toString();
+
+                    setTotaleSpesa(carrelloSpesa[i].tesseraFedelta.getisTesseraFedelta()
+                            ? carrelloSpesa[i].PrezzoScontato(carrelloSpesa[i].tesseraFedelta.getScontoTesseraFedelta())
+                            : carrelloSpesa[i].GetPrezzoConIva());
+                    break;
                 case "phone":
-                System.out.println("Hai scelto Smartphone!");
-                carrelloSpesa[i] = new Smartphone();
-                break;
+                    System.out.println("Hai scelto Smartphone!");
+                    carrelloSpesa[i] = new Smartphone();
+
+                    scontrino += carrelloSpesa[i].toString();
+                    setTotaleSpesa(carrelloSpesa[i].tesseraFedelta.getisTesseraFedelta()
+                            ? carrelloSpesa[i].PrezzoScontato(carrelloSpesa[i].tesseraFedelta.getScontoTesseraFedelta())
+                            : carrelloSpesa[i].GetPrezzoConIva());
+                    break;
                 case "tv":
-                System.out.println("Hai scelto TV!");
-                carrelloSpesa[i] = new Televisori();
-                break;
+                    System.out.println("Hai scelto TV!");
+                    carrelloSpesa[i] = new Televisori();
+
+                    scontrino += carrelloSpesa[i].toString();
+                    setTotaleSpesa(carrelloSpesa[i].tesseraFedelta.getisTesseraFedelta()
+                            ? carrelloSpesa[i].PrezzoScontato(carrelloSpesa[i].tesseraFedelta.getScontoTesseraFedelta())
+                            : carrelloSpesa[i].GetPrezzoConIva());
+                    break;
                 default:
-                System.out.println("Hai inserito un nome non valido, riprovare (si) o uscire (no)?");
-                String risposta = scan.nextLine().trim().toLowerCase();
-                if (risposta.equals("si")) {
-                    i--;
-                } else {
-                    return;
-                }
+                    System.out.println("Hai inserito un nome non valido, riprovare (si) o uscire (no)?");
+                    String risposta = scan.nextLine().trim().toLowerCase();
+                    if (risposta.equals("si")) {
+                        i--;
+                    } else {
+                        return;
+                    }
             }
         }
     }
-    
+
+    public void setTotaleSpesa(BigDecimal num) {
+        if (num != null) {
+            totaleSpesa = totaleSpesa.add(num);
+        }
+    }
+
     private void StampaSchermo() {
+        clearScreen();
+        System.out.println(String.format("Nel tuo carrello ci sono %d prodott%s", carrelloSpesa.length,
+                carrelloSpesa.length > 1 ? "i" : "o"));
+        System.out.println("----------------");
         for (int i = 0; i < numeroProdotti; i++) {
             System.out.println(carrelloSpesa[i].GetCodiceNomeEsteso());
         }
+        System.out.println("----------------");
+        System.out.println(carrelloSpesa[0].tesseraFedelta.getisTesseraFedelta()
+                ? "Hai la tessera\n"
+                : "Non hai la tessera\n");
+        System.out.println(String.format("Il prezzo finale è di %.2f$", totaleSpesa));
     }
-    
+
     public Prodotto[] getCarrello() {
         return carrelloSpesa;
     }
+
     public static void main(String[] args) {
-        
+
         Carrello carrello = new Carrello();
+    }
+
+    public static void clearScreen() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
     }
 }

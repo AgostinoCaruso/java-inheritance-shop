@@ -17,10 +17,15 @@ public class Televisori extends Prodotto {
 
         System.out.println("Il tv è smart? : ");
         String scanisSmart = scan.nextLine().trim().toLowerCase();
-        if(scanisSmart.equals("si"))
+        if(tesseraFedelta.getisTesseraFedelta() &&  scanisSmart.equals("si")){
             isSmart=true;
-        else
+            tesseraFedelta.setScontoTesseraFedelta(new BigDecimal("0.02"));
+        }
+        else{
             isSmart=false;
+            tesseraFedelta.setScontoTesseraFedelta(new BigDecimal("0.10"));
+        }
+        this.sconto = tesseraFedelta.getScontoTesseraFedelta();
     }
 
     public Televisori(String nome, String marca, BigDecimal prezzo, Iva iva, float dimensioni, boolean isSmart) {
@@ -46,10 +51,12 @@ public class Televisori extends Prodotto {
     }
     @Override
     public String GetCodiceNomeEsteso() {
-        return String.format("%s, le dimensioni sono: %.2f pollici, è smart: %s.\n", 
+        return String.format("Il prodotto è una TV, codice: %s, le dimensioni sono: %.0f pollici, è smart: %s,il prezzo è di: %.2f$, lo sconto applicato è di %.2f.\n", 
             super.GetCodiceNomeEsteso(), 
             getDimensioni(),
-            (getisSmart() ? "si" : "no")
+            (getisSmart() ? "si" : "no"),
+            GetPrezzoConIva(),
+            this.sconto
         );
     }
 }

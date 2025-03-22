@@ -7,7 +7,7 @@ public class Cuffie extends Prodotto {
     private String colore;
     private boolean isWireless;
 
-    public Cuffie(){
+    public Cuffie() {
         super();
 
         System.out.println("Immetti il colore: ");
@@ -16,10 +16,16 @@ public class Cuffie extends Prodotto {
 
         System.out.println("Le cuffie sono wireless? : ");
         String scanisWireless = scan.nextLine().trim().toLowerCase();
-        if(scanisWireless.equals("si"))
-            isWireless=true;
-        else
-            isWireless=false;
+
+        if (tesseraFedelta.getisTesseraFedelta() && scanisWireless.equals("si")){
+            isWireless = true;
+            tesseraFedelta.setScontoTesseraFedelta(new BigDecimal("0.07"));
+        }
+        else{
+            isWireless = false;
+            tesseraFedelta.setScontoTesseraFedelta(new BigDecimal("0.02"));
+        }
+        this.sconto = tesseraFedelta.getScontoTesseraFedelta();
     }
 
     public Cuffie(String nome, String marca, BigDecimal prezzo, Iva iva, String colore, boolean isWireless) {
@@ -45,12 +51,14 @@ public class Cuffie extends Prodotto {
     public void setisWireless(boolean isWireless) {
         this.isWireless = isWireless;
     }
+
     @Override
     public String GetCodiceNomeEsteso() {
-        return String.format("%s, il colore è: %s, sono %s.\n", 
-            super.GetCodiceNomeEsteso(), 
-            getColore(),
-            (getisWireless() ? "wireless" : "con cavo")
-        );
+        return String.format("Il prodotto è una Cuffia, codice: %s, il colore è: %s, sono %s,il prezzo è di: %.2f$, lo sconto applicato è di %.2f.\n",
+                super.GetCodiceNomeEsteso(),
+                getColore(),
+                (getisWireless() ? "wireless" : "con cavo"),
+                GetPrezzoConIva(),
+                sconto);
     }
 }
